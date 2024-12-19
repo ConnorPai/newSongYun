@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瓷器商人</title>
+    <style>
+        /* 设置全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            position: relative;
+            font-family: Arial, sans-serif; /* 添加字体设置 */
+        }
+
+        /* 背景容器设置 */
+        .background-container {
+            width: 100%;
+            height: 100%;
+            background: url('backgroundshadow.png') no-repeat center center fixed; 
+            background-size: contain; /* 使用cover确保背景图完全覆盖 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1; /* 确保背景在较低层 */
+        }
+
+        /* 左下角图片容器设置 */
+        .corner-image-container {
+            position: absolute;
+            bottom: 10px; /* 根据需要调整与底部的距离 */
+            left: 130px; /* 根据需要调整与左边的距离 */
+            z-index: 3; /* 确保左下角图片在较高层 */
+        }
+
+        /* 左下角图片样式 */
+        #cornerImage {
+            width: 425px; /* 根据需要调整宽度 */
+            height: auto; /* 保持图片比例 */
+        }
+
+        /* 顶部图片和文本框容器设置 */
+        .top-items-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px; /* 图片之间的间距 */
+            padding-top: 20px; /* 与顶部的距离 */
+            position: absolute;
+            top: 35%; /* 居中对齐到页面的中上方 */
+            left: 50%;
+            transform: translate(-50%, -50%); /* 精确居中 */
+            z-index: 4; /* 确保顶部项目在最顶层 */
+        }
+
+        /* 单个顶部项目设置 */
+        .top-item {
+            text-align: center;
+        }
+
+        /* 顶部图片样式 */
+        .top-item img {
+            width: 300px; /* 根据需要调整宽度 */
+            height: auto; /* 保持图片比例 */
+        }
+
+        /* 顶部文本框样式 */
+        .top-item p {
+            margin-top: 0; /* 图片与文本框之间的间距 */
+            font-size: 16px;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+            padding: 10px; /* 内边距 */
+            border-radius: 5px; /* 圆角 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            display: inline-block; /* 确保文本框适应内容宽度 */
+            width: 50%; /* 设置一个相对宽度 */
+            max-width: 300px; /* 设置最大宽度 */
+            text-align: center; /* 文本居中 */
+            font-weight: bold; /* 加粗文本 */
+        }
+
+        /* 文本框容器设置 */
+        .text-box-container {
+            position: absolute;
+            bottom: 30px; /* 根据需要调整文本框距离底部的距离 */
+            left: 55%;
+            transform: translateX(-50%);
+            width: 60%; /* 增加宽度 */
+            max-width: 800px; /* 增加最大宽度限制 */
+            text-align: left;
+            z-index: 3; /* 确保文本框在较高层 */
+        }
+
+        /* 文本框样式 */
+        #textBox {
+            padding: 40px; /* 增加内边距 */
+            font-size: 18px;
+            line-height: 2.2;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+            word-wrap: break-word; /* 确保长单词或URL不会溢出 */
+            min-height: 300px; /* 最小高度 */
+            max-height: 500px; /* 最大高度 */
+            overflow-y: auto; /* 如果内容超出最大高度，则添加滚动条 */
+        }
+
+        /* 右上角按钮样式 */
+        #returnButton {
+            position: absolute;
+            width: 60px;
+            top: 100px; /* 按钮距离顶部的距离 */
+            right: 300px; /* 按钮距离右侧的距离 */
+            cursor: pointer; /* 更改鼠标指针为手型 */
+            z-index: 5; /* 确保按钮在最顶层 */
+        }
+
+        /* 布店老板对话样式 */
+        .boss-dialogue {
+            font-size: 20px; /* 增大字体大小 */
+            line-height: 28px; /* 增加行高 */
+            font-weight: 500; /* 设置字体粗细 */
+            color: #555; /* 设置字体颜色 */
+            text-align: left; /* 设置文本对齐方式 */
+            margin-bottom: 20px; /* 增加段落间距 */
+            font-family: 'Georgia', serif; /* 更换字体系列 */
+            quotes: "“" "”"; /* 设置引用符号 */
+        }
+
+        .boss-dialogue p {
+            margin: 1em 0; /* 设置段落间距 */
+            text-indent: 2em; /* 首行缩进 */
+        }
+
+        .boss-dialogue strong {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        /* 顶部图片高亮效果 */
+.top-item img:hover {
+    opacity: 0.7; /* 改变透明度以产生高亮效果 */
+    transition: opacity 0.3s ease-in-out; /* 添加过渡效果使变化平滑 */
+    transform: scale(1.05); /* 稍微放大图片 */
+}
+    </style>
+</head>
+
+
+<body>
+    
+    <!-- 背景图片 -->
+    <div class="background-container"></div>
+
+    <!-- 顶部图片和文本框 -->
+    <div class="top-items-container">
+        <div class="top-item" id="item1">
+            <img src="p1.png" alt="Image 1">
+            <p>青釉弦纹瓶</p>
+        </div>
+        <div class="top-item" id="item2">
+            <img src="p2.png" alt="Image 2">
+            <p>天青釉盘</p>
+        </div>
+        <div class="top-item" id="item3">
+            <img src="p3.png" alt="Image 3">
+            <p>白釉盘</p>
+        </div>
+        <div class="top-item" id="item4"> <!-- 新增第四个项目 -->
+            <img src="p4.png" alt="Image 4">
+            <p>青釉洗</p>
+        </div>
+    </div>
+
+    <!-- 左下角图片 -->
+    <div class="corner-image-container">
+        <img src="manporcelain.png" alt="Corner Image" id="cornerImage">
+    </div>
+
+    <!-- 文本框 -->
+    <div class="text-box-container">
+        <div id="textBox" class="boss-dialogue">
+            <strong>瓷器商人:</strong>
+            <p id="textContent">客官，瞧一瞧看一看！这儿有四种布料，都是当朝当代的好织品！随便挑一个，保准让你知道得明明白白！</p>
+        </div>
+    </div>
+
+    <!-- 右上角返回按钮 -->
+    <img src="quit.png" alt="Return Button" id="returnButton" onclick="goBack()">
+
+    <script>
+        // 返回按钮点击事件处理函数
+        function goBack() {
+            window.location.href = "index.html"; // 将此替换为你的目标网址
+        }
+
+        // 默认文本
+        const defaultText = "客官，这四件可都是名窑出品！分别来自咱大宋的四大名窑——官窑、汝窑、哥窑、定窑。随意挑一件点击查看，我来为您详细介绍！";
+
+        // 不同图片对应的文本
+        const texts = {
+            item1: "这件是产自哥窑的青釉弦纹瓶。哥窑瓷器以其独特的“金丝铁线”开片纹闻名，釉色多变，散发出古朴雅致的韵味。这开片纹，可是瓷器收藏家眼中的瑰宝！",
+            item2: "这件是产自汝窑的天青釉盘。汝窑被誉为“青瓷之首”，釉色如天青带雨，温润如玉，极其珍贵。传说当年汝窑专为皇室烧制，存世的真品少之又少！",
+            item3: "这件是产自定窑的白釉盘。定窑以烧制白瓷闻名，质地细腻，釉色莹润，常常采用“刻花”或“印花”装饰，兼具实用性和艺术性，深受百姓和皇室喜爱。",
+            item4: "这件是产自官窑的青釉洗。官窑瓷器专供皇家使用，釉色以青灰和月白为主，釉面上常有细细的纹路，称为“开片”，那可是极富艺术美感的天然裂纹！"
+        };
+
+        // 获取文本框元素
+        const textContent = document.getElementById('textContent');
+
+        // 给每个图片添加鼠标悬停事件监听器
+        document.querySelectorAll('.top-item').forEach(item => {
+            item.addEventListener('mouseover', function() {
+                const itemId = this.id;
+                if (texts[itemId]) {
+                    textContent.textContent = texts[itemId];
+                }
+            });
+
+            item.addEventListener('mouseout', function() {
+                textContent.textContent = defaultText;
+            });
+        });
+    </script>
+</body>
+</html>

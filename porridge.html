@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>porridge</title>
+    <style>
+    
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            position: relative;
+            font-family: Arial, sans-serif; /* 添加字体设置 */
+        }
+
+        /* 背景容器设置 */
+        .background-container {
+            width: 100%;
+            height: 100%;
+            background: url('backgroundshadow.png') no-repeat center center fixed; 
+            background-size: contain; /* 使用cover确保背景图完全覆盖 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1; /* 确保背景在较低层 */
+        }
+
+        /* 左下角图片容器设置 */
+        .corner-image-container {
+            position: absolute;
+            bottom: 40px; /* 根据需要调整与底部的距离 */
+            left: 150px; /* 根据需要调整与左边的距离 */
+            z-index: 3; /* 确保左下角图片在较高层 */
+        }
+
+        /* 左下角图片样式 */
+        #cornerImage {
+            width: 350px; /* 根据需要调整宽度 */
+            height: auto; /* 保持图片比例 */
+        }
+
+        /* 顶部图片和文本框容器设置 */
+        .top-items-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px; /* 图片之间的间距 */
+            padding-top: 20px; /* 与顶部的距离 */
+            position: absolute;
+            top: 35%; /* 居中对齐到页面的中上方 */
+            left: 50%;
+            transform: translate(-50%, -50%); /* 精确居中 */
+            z-index: 4; /* 确保顶部项目在最顶层 */
+        }
+
+        /* 单个顶部项目设置 */
+        .top-item {
+            text-align: center;
+        }
+
+        /* 顶部图片样式 */
+        .top-item img {
+            width: 300px; /* 根据需要调整宽度 */
+            height: auto; /* 保持图片比例 */
+        }
+
+        /* 顶部文本框样式 */
+        .top-item p {
+            margin-top: 0; /* 图片与文本框之间的间距 */
+            font-size: 16px;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+            padding: 10px; /* 内边距 */
+            border-radius: 5px; /* 圆角 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            display: inline-block; /* 确保文本框适应内容宽度 */
+            width: 50%; /* 设置一个相对宽度 */
+            max-width: 300px; /* 设置最大宽度 */
+            text-align: center; /* 文本居中 */
+            font-weight: bold; /* 加粗文本 */
+        }
+
+        /* 文本框容器设置 */
+        .text-box-container {
+            position: absolute;
+            bottom: 30px; /* 根据需要调整文本框距离底部的距离 */
+            left: 55%;
+            transform: translateX(-50%);
+            width: 60%; /* 增加宽度 */
+            max-width: 800px; /* 增加最大宽度限制 */
+            text-align: left;
+            z-index: 3; /* 确保文本框在较高层 */
+        }
+
+        /* 文本框样式 */
+        #textBox {
+            padding: 40px; /* 增加内边距 */
+            font-size: 18px;
+            line-height: 2.2;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+            word-wrap: break-word; /* 确保长单词或URL不会溢出 */
+            min-height: 300px; /* 最小高度 */
+            max-height: 500px; /* 最大高度 */
+            overflow-y: auto; /* 如果内容超出最大高度，则添加滚动条 */
+        }
+
+        /* 右上角按钮样式 */
+        #returnButton {
+            position: absolute;
+            width: 60px;
+            top: 100px; /* 按钮距离顶部的距离 */
+            right: 300px; /* 按钮距离右侧的距离 */
+            cursor: pointer; /* 更改鼠标指针为手型 */
+            z-index: 5; /* 确保按钮在最顶层 */
+        }
+
+        /* 布店老板对话样式 */
+        .boss-dialogue {
+            font-size: 20px; /* 增大字体大小 */
+            line-height: 28px; /* 增加行高 */
+            font-weight: 500; /* 设置字体粗细 */
+            color: #555; /* 设置字体颜色 */
+            text-align: left; /* 设置文本对齐方式 */
+            margin-bottom: 20px; /* 增加段落间距 */
+            font-family: 'Georgia', serif; /* 更换字体系列 */
+            quotes: "“" "”"; /* 设置引用符号 */
+        }
+
+        .boss-dialogue p {
+            margin: 1em 0; /* 设置段落间距 */
+            text-indent: 2em; /* 首行缩进 */
+        }
+
+        .boss-dialogue strong {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        /* 顶部图片高亮效果 */
+.top-item img:hover {
+    opacity: 0.7; /* 改变透明度以产生高亮效果 */
+    transition: opacity 0.3s ease-in-out; /* 添加过渡效果使变化平滑 */
+    transform: scale(1.05); /* 稍微放大图片 */
+}
+        
+        /* 中央上方按钮容器设置 */
+        .central-button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%; /* 调整位置以适应页面布局 */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4; /* 确保顶部项目在最顶层 */
+        }
+
+        /* 中央按钮样式 */
+#centralButton {
+    width: 300px; /* 根据需要调整宽度 */
+    height: auto; /* 保持图片比例 */
+    cursor: pointer; /* 更改鼠标指针为手型 */
+    transition: transform 0.2s ease-in-out; /* 添加过渡效果使变化平滑 */
+}
+
+/* 中央按钮向下移动类 */
+.pullDown {
+    animation: pullDown 1s ease-out; /* 应用新的动画效果 */
+}
+
+        /* 中央图片向下移动效果 */
+@keyframes pullDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(10px); } /* 向下移动10px */
+    100% { transform: translateY(0); }
+}
+
+
+        /* 触发振动效果 */
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        /* 右下角图片容器设置 */
+        .right-bottom-image-container {
+            position: absolute;
+            bottom: 40px; /* 根据需要调整与底部的距离 */
+            right: 150px; /* 根据需要调整与右边的距离 */
+            z-index: 3; /* 确保图片在较高层 */
+        }
+
+        /* 右下角图片样式 */
+        #rightBottomImage {
+            width: 150px; /* 根据需要调整宽度 */
+            height: auto; /* 保持图片比例 */
+            cursor: move; /* 更改鼠标指针为移动样式 */
+        }
+
+        /* 中央图片抖动效果 */
+        @keyframes shake {
+            0%, 100% { transform: translateY(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateY(-5px); }
+            20%, 40%, 60%, 80% { transform: translateY(5px); }
+        }
+
+        /* 中央图片抖动类 */
+        .shake {
+            animation: shake 0.5s;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- 背景图片 -->
+    <div class="background-container"></div>
+
+    <!-- 左下角图片 -->
+    <div class="corner-image-container">
+        <img src="manfabric2.png" alt="Corner Image" id="cornerImage">
+    </div>
+
+    <!-- 中央上方按钮 -->
+    <div class="central-button-container">
+        <img src="porridge.png" alt="Central Button" id="centralButton" onclick="shakeButton()">
+    </div>
+
+    <!-- 文本框 -->
+    <div class="text-box-container">
+        <div id="textBox" class="boss-dialogue">
+            <strong>范仲淹:</strong>
+            <p id="textContent">啊！这块粥冻得这么硬了，真是难以下口...我饿得几乎没有力气翻书了，你能帮我切一下粥吗？</p>
+        </div>
+    </div>
+
+    <!-- 右上角返回按钮 -->
+    <img src="quit.png" alt="Return Button" id="returnButton" onclick="goBack()">
+
+    <!-- 右下角图片 -->
+    <div class="right-bottom-image-container">
+        <img id="rightBottomImage" src="knife.png" alt="Right Bottom Image">
+    </div>
+
+    <script>
+    
+    // 返回按钮点击事件处理函数保持不变
+    function goBack() {
+        window.location.href = "index.html"; // 将此替换为你的目标网址
+    }
+
+    // 初始化拖拽事件
+    function initDraggableImage() {
+        const img = document.getElementById('rightBottomImage');
+        const centralButton = document.getElementById('centralButton');
+        const textContent = document.getElementById('textContent');
+
+        img.addEventListener('dragstart', function(e) {
+            e.dataTransfer.setData('text/plain', ''); // 必须设置数据传输类型
+        });
+
+        img.addEventListener('drag', function(e) {
+            // 检测图片是否经过中央图片
+            const rect = centralButton.getBoundingClientRect();
+            if (e.clientX >= rect.left && e.clientX <= rect.right &&
+                e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                shakeImage(centralButton, textContent);
+            }
+        });
+    }
+
+    // 抖动中央图片并更换图片，同时更新对话框内容
+function shakeImage(imageElement, textElement) {
+    imageElement.classList.add('pullDown');
+    setTimeout(() => {
+        imageElement.classList.remove('pullDown');
+        imageElement.src = 'porridgebroken.png'; // 替换为新的图片路径
+        textElement.textContent = '谢谢你，这块粥切得很好！'; // 更新对话框内容
+    }, 1000); // 等待动画完成
+}
+
+
+    // 在页面加载完毕后初始化拖拽事件
+    window.onload = initDraggableImage;
+
+    </script>
+</body>
+</html>

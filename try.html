@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        img[usemap] {
+            width: 100%; /* 确保图片覆盖整个页面 */
+            height: auto; /* 保持比例 */
+        }
+        .button-container {
+            position: fixed;
+            top: 10px;
+            right: 140px;
+        }
+        .button {
+            cursor: pointer;
+            margin-left: 15px;
+            width: 60px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景图片 -->
+    <img src="background.png" usemap="#peopleMap" alt="Background with people">
+
+    <!-- 定义图像映射 -->
+    <map name="peopleMap">
+        <!-- 定义小人的点击区域 -->
+        <area shape="circle" coords="150,150,50" alt="Person 1" onclick="personClicked('person1')">
+        <area shape="rect" coords="300,200,400,300" alt="Person 2" onclick="personClicked('person2')">
+        <!-- 添加更多的area标签来定义更多小人的点击区域 -->
+    </map>
+
+    <div class="button-container">
+        <img id="toggleButton" src="onvolume.png" alt="Button 1" class="button" onclick="toggleImage()">
+        <img src="tips.png" alt="Button 2" class="button" onclick="button2Clicked()">
+    </div>
+
+    <script>
+        // Track the toggle state of the button
+        let isOn = true;
+
+        function toggleImage() {
+            const button = document.getElementById('toggleButton');
+            if (isOn) {
+                button.src = 'offvolume.png'; // Change to your off image path
+                isOn = false;
+            } else {
+                button.src = 'onvolume.png'; // Change back to on image path
+                isOn = true;
+            }
+        }
+
+        function button2Clicked() {
+            alert('Button 2 clicked!');
+        }
+
+        function personClicked(personId) {
+            alert(`${personId} clicked!`);
+            // 在这里可以添加针对不同人物的具体逻辑
+        }
+    </script>
+</body>
+</html>

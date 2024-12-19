@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宋韵千载寻忆</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('backgroundwhite.png') no-repeat center center fixed;
+            background-size: contain;
+            background-attachment: fixed; /* 背景图片固定，不随页面滚动 */
+        }
+        #top-image {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #progress-container {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 30px;
+            background-color: #ddd; /* 进度条背景色 */
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        #progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #eb8818;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+<body>
+
+<img src="title.png" id="top-image" alt="顶部图片">
+
+<div id="progress-container">
+    <div id="progress-bar">0%</div>
+</div>
+
+<script>
+    var progressBar = document.getElementById('progress-bar');
+    var width = 0;
+    var id = setInterval(frame, 50); // 将时间间隔改为50毫秒
+
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+            window.location.href = "welcome.html"; // 加载完成后跳转到另一个页面
+        } else {
+            width += 1; // 每次增加1%
+            progressBar.style.width = width + '%';
+            progressBar.innerHTML = width + '%';
+        }
+    }
+</script>
+
+</body>
+</html>

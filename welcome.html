@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宋韵千载寻忆</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('backgroundlight.png') no-repeat center center fixed;
+            background-size: contain;
+        }
+        #top-image {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #image-button {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<img src="title.png" id="top-image" alt="顶部图片">
+
+<img src="startbutton.png" id="image-button" alt="点击开始" style="width: 300px; height: auto;">
+
+<script>
+    document.getElementById('image-button').addEventListener('click', function() {
+        window.location.href = "index.html"; // 点击图片后跳转到另一个页面
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>市井图</title>
+    <style>
+        /* 全局样式 */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        /* 设置背景图片 */
+        body {
+            background: url('backgroundshadow.png') no-repeat center center fixed; 
+            background-size: contain;
+            background-attachment: fixed;
+        }
+
+        /* 透明文本框容器 */
+        .transparent-textbox-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* 透明文本框样式 */
+        .transparent-textbox {
+            background-color: rgba(255, 255, 255, 0.7); /* 半透明白色背景 */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%; /* 确保在小屏幕上也能适配 */
+        }
+
+        .transparent-textbox p {
+            margin: 10px 0;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 返回按钮样式 */
+        .return-button {
+            position: fixed;
+            top: 100px;
+            right: 300px;
+            cursor: pointer;
+            width: 60px; /* 根据需要调整大小 */
+            height: auto;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- 右上角返回按钮 -->
+    <img src="quit.png" alt="Return Button" id="returnButton" onclick="goToIndex()" class="return-button">
+
+    <!-- 透明文本框 -->
+    <div class="transparent-textbox-container">
+        <div class="transparent-textbox">
+            <p>民以食为天，要不去食馆看看？</p>
+            <p>今日宜算卦，要不去算卦看看？</p>
+            <p>衣食住行衣为首，要不去布匹店看看？</p>
+            <p>白釉青花一火成，要不要去瓷器店看看？</p>
+        </div>
+    </div>
+
+    <script>
+        // 返回按钮点击事件处理函数，直接跳转到 index.html
+        function goToIndex() {
+            window.location.href = 'index.html'; // 直接指定目标页面
+        }
+
+        // 自动播放音乐（如果浏览器允许）
+        document.addEventListener('DOMContentLoaded', function() {
+            const music = document.getElementById('backgroundMusic');
+            music.play().catch(function(error) {
+                console.log("Automatic playback failed. User interaction required.");
+            });
+        });
+    </script>
+</body>
+</html>

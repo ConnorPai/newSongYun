@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>市井图</title>
+    <style>
+        /* 全局样式 */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        /* 设置背景图片 */
+        body {
+            background: url('backgroundshadow.png') no-repeat center center fixed; 
+            background-size: contain; /* 确保背景图片覆盖整个页面 */
+            background-attachment: fixed;
+        }
+
+        /* GIF 动画容器 */
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        /* GIF 动画样式 */
+        .gif-animation {
+            width: 300px; /* 根据实际GIF大小调整 */
+            height: auto; /* 保持原始比例 */
+        }
+
+        /* 返回按钮样式 */
+        .return-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            width: 60px; /* 根据需要调整大小 */
+            height: auto;
+            z-index: 1000;
+        }
+
+        /* 透明文本框容器 */
+        .transparent-textbox-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        /* 透明文本框样式 */
+        .transparent-textbox {
+            background-color: rgba(255, 255, 255, 0.7); /* 半透明白色背景 */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%; /* 确保在小屏幕上也能适配 */
+            z-index: 1000;
+        }
+
+        .transparent-textbox p {
+            margin: 10px 0;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 背景音乐 -->
+    <audio id="backgroundMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- 右上角返回按钮 -->
+    <img src="quit.png" alt="Return Button" id="returnButton" onclick="goToIndex()" class="return-button">
+
+    <!-- 透明文本框 -->
+    
+
+    <!-- GIF 动画 -->
+    <div class="gif-container">
+        <img src="firework.GIF" alt="GIF Animation" class="gif-animation">
+    </div>
+
+    <script>
+        // 返回按钮点击事件处理函数，直接跳转到 index.html
+        function goToIndex() {
+            window.location.href = 'index.html'; // 直接指定目标页面
+        }
+
+        // 自动播放音乐（如果浏览器允许）
+        document.addEventListener('DOMContentLoaded', function() {
+            const music = document.getElementById('backgroundMusic');
+            music.play().catch(function(error) {
+                console.log("Automatic playback failed. User interaction required.");
+            });
+        });
+    </script>
+</body>
+</html>
